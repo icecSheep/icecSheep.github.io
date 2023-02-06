@@ -4,11 +4,36 @@
   
   
   <entry>
+    <title>特殊数</title>
+    <link href="/2023/02/06/%E7%89%B9%E6%AE%8A%E6%95%B0/"/>
+    <url>/2023/02/06/%E7%89%B9%E6%AE%8A%E6%95%B0/</url>
+    
+    <content type="html"><![CDATA[<p>#特殊数</p><h2 id="斯特林数"><a href="#斯特林数" class="headerlink" title="斯特林数"></a>斯特林数</h2><h3 id="第二类斯特林数"><a href="#第二类斯特林数" class="headerlink" title="第二类斯特林数"></a>第二类斯特林数</h3>]]></content>
+    
+    
+    <categories>
+      
+      <category>---Concrete Mathematics</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>---组合数学 --- 算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>线性表</title>
     <link href="/2023/02/06/%E7%BA%BF%E6%80%A7%E8%A1%A8/"/>
     <url>/2023/02/06/%E7%BA%BF%E6%80%A7%E8%A1%A8/</url>
     
-    <content type="html"><![CDATA[<h1 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>数据在逻辑形式上是下面这样的就是线性表</p><pre><code class=" mermaid">flowchart LRa1 --&gt;a2 --&gt;a3 --&gt; a4 --&gt; a5</code></pre><p>存储结构</p><ul><li>链表：用结点类和指针实现</li><li>顺序表：用数组实现</li></ul><h2 id="顺序表"><a href="#顺序表" class="headerlink" title="顺序表"></a>顺序表</h2><h3 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h3><p>在计算机内存中，确定一个单元然后接着一个数据一个数据存，比如存入一个char型数据，假设计算机按字节编制，那么你存一个char型变量，这个变量在计算器中的存储地址就加1，也就是加所占的存储单元的个数</p><p>拓展到二维数组，其实他就是第一行存完再接着存第二行。计算数据所在地址大同小异。对于三维数组，那么就看成是多个二维数组，存完一个二维数组再接着存下一个。也就是一个立方体看成是n个面组成的，在计算机里编制是一层一层的</p><h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><h4 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h4><p>插入需要找到该元素所在位置，然后把在他之后的元素一个一个移动，假设找的是第i个位置，那么就要移动$n-i+1$次，假设我们查找的元素是等概率的，那么插入的复杂度就是：</p><p>​$\frac{1}{n+1}\sum_{i&#x3D;1}^{n}(n-i+1)$&#x3D;$\frac{n}{2}$</p><p>注意此处插入的位置是n+1，不是n</p><h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><p>与插入同理，删除之后把后面的一个接一个向前移动。删除的位置只有n,移动 n-i 次，复杂度为：</p><p>​$\frac{1}{n}\sum_{i&#x3D;1}^{n}(n-i)$&#x3D;$\frac{n-1}{2}$</p><h4 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h4><ul><li>优点：可随机存取表中任意数据，算法简单，空间利用率高；可以直接获取线性表的长度</li><li>缺点：设置时需要预先知道要存的元素个数；删除插入算法复杂度高</li></ul><h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><p>链表编程时需要class或者struct一个结点，结点内存有指针域和数据域</p><table><thead><tr><th align="center">data</th><th align="center">link</th></tr></thead></table><p>link域可以是指向后驱结点的指针，也可以是前驱加后驱，两个都有的就称为是双向链表</p><p>存储时，我们需要设置一个头结点和一个尾结点。尾结点的link设置为null,这样在查找作为循环的终止条件</p><h4 id="插入-1"><a href="#插入-1" class="headerlink" title="插入"></a>插入</h4><p>查找首先就是O(n)的不能直接找到我们要插入的元素的位置。</p><p>插入需要把插入结点的link指向该位置的后驱结点，然后把前驱结点的link指向插入的结点。这个复杂度是常数级的</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++">node0-&gt;link=node2;<br>node1-&gt;link=node1;<br></code></pre></td></tr></table></figure><p>这个代码是把结点0插入到1和2中</p><h4 id="删除-1"><a href="#删除-1" class="headerlink" title="删除"></a>删除</h4><p>删除大同小异</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">int</span> *p;<br>p=node1-link;<br>node1-&gt;link=node1-&gt;link-&gt;link;<br><span class="hljs-keyword">delete</span> p;<br></code></pre></td></tr></table></figure><p>这里必须释放node0,也就是删除。如果不用p这个指针，指向，那么在删除的时候就是会删除掉node2,要删除的node0就没有指向它的指针，那么就形成了内存泄漏。</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>数据在逻辑形式上是下面这样的就是线性表</p><pre><code class=" mermaid">flowchart LRa1 --&gt;a2 --&gt;a3 --&gt; a4 --&gt; a5</code></pre><p>存储结构</p><ul><li>链表：用结点类和指针实现</li><li>顺序表：用数组实现</li></ul><h2 id="顺序表"><a href="#顺序表" class="headerlink" title="顺序表"></a>顺序表</h2><h3 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h3><p>在计算机内存中，确定一个单元然后接着一个数据一个数据存，比如存入一个char型数据，假设计算机按字节编制，那么你存一个char型变量，这个变量在计算器中的存储地址就加1，也就是加所占的存储单元的个数</p><p>拓展到二维数组，其实他就是第一行存完再接着存第二行。计算数据所在地址大同小异。对于三维数组，那么就看成是多个二维数组，存完一个二维数组再接着存下一个。也就是一个立方体看成是n个面组成的，在计算机里编制是一层一层的</p><h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><h4 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h4><p>插入需要找到该元素所在位置，然后把在他之后的元素一个一个移动，假设找的是第i个位置，那么就要移动$n-i+1$次，假设我们查找的元素是等概率的，那么插入的复杂度就是：</p><p>​$\frac{1}{n+1}\sum_{i&#x3D;1}^{n}(n-i+1)$&#x3D;$\frac{n}{2}$</p><p>注意此处插入的位置是n+1，不是n</p><h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><p>与插入同理，删除之后把后面的一个接一个向前移动。删除的位置只有n,移动 n-i 次，复杂度为：</p><p>​$\frac{1}{n}\sum_{i&#x3D;1}^{n}(n-i)$&#x3D;$\frac{n-1}{2}$</p><h4 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h4><ul><li>优点：可随机存取表中任意数据，算法简单，空间利用率高；可以直接获取线性表的长度</li><li>缺点：设置时需要预先知道要存的元素个数；删除插入算法复杂度高</li></ul><h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><h4 id="存储-1"><a href="#存储-1" class="headerlink" title="存储"></a>存储</h4><p>链表编程时需要class或者struct一个结点，结点内存有指针域和数据域</p><table><thead><tr><th align="center">data</th><th align="center">link</th></tr></thead></table><p>link域可以是指向后驱结点的指针，也可以是前驱加后驱，两个都有的就称为是双向链表</p><p>存储时，我们需要设置一个头结点和一个尾结点。尾结点的link设置为null,这样在查找作为循环的终止条件</p><h4 id="插入-1"><a href="#插入-1" class="headerlink" title="插入"></a>插入</h4><p>查找首先就是O(n)的不能直接找到我们要插入的元素的位置。</p><p>插入需要把插入结点的link指向该位置的后驱结点，然后把前驱结点的link指向插入的结点。这个复杂度是常数级的</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++">node0-&gt;link=node2;<br>node1-&gt;link=node1;<br></code></pre></td></tr></table></figure><p>这个代码是把结点0插入到1和2中</p><h4 id="删除-1"><a href="#删除-1" class="headerlink" title="删除"></a>删除</h4><p>删除大同小异</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">int</span> *p;<br>p=node1-link;<br>node1-&gt;link=node1-&gt;link-&gt;link;<br><span class="hljs-keyword">delete</span> p;<br></code></pre></td></tr></table></figure><p>这里必须释放node0,也就是删除。如果不用p这个指针，指向，那么在删除的时候就是会删除掉node2,要删除的node0就没有指向它的指针，那么就形成了内存泄漏。</p>]]></content>
     
     
     <categories>
