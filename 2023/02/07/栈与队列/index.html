@@ -16,24 +16,22 @@
   <meta name="author" content="ice.Sheep">
   <meta name="keywords" content="">
   
-    <meta name="description" content="二项式系数帕斯卡三角形 基本恒等式对称恒等式$$\left(\begin{matrix}n\k\\end{matrix}\right)&#x3D;\left(\begin{matrix}n\n-k\\end{matrix}\right)$$ 这个恒等式要求n大于等于0,因为n小于0的时候组合数等于0，这是由伽马函数决定的。 吸收恒等式$$\left(\begin{matrix}n\k\end{ma">
+    <meta name="description" content="栈与队列概念数据在存入和取出时有一定顺序，先入后出位栈，先入先出为队列 栈定义方式栈根据采用的存储方式分为链式栈和顺序栈。简单定义如下 12345678910111213141516171819202122232425262728293031class Node&amp;#123;    int data;    Node* link&#x3D;NULL;&amp;#125;class Stack&amp;#123;    int">
 <meta property="og:type" content="article">
-<meta property="og:title" content="二项式系数">
-<meta property="og:url" content="http://icecsheep.github.io/2023/02/07/%E4%BA%8C%E9%A1%B9%E5%BC%8F%E7%B3%BB%E6%95%B0/index.html">
+<meta property="og:title" content="栈与队列">
+<meta property="og:url" content="http://icecsheep.github.io/2023/02/07/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/index.html">
 <meta property="og:site_name" content="ice.Sheep&#39;blogs">
-<meta property="og:description" content="二项式系数帕斯卡三角形 基本恒等式对称恒等式$$\left(\begin{matrix}n\k\\end{matrix}\right)&#x3D;\left(\begin{matrix}n\n-k\\end{matrix}\right)$$ 这个恒等式要求n大于等于0,因为n小于0的时候组合数等于0，这是由伽马函数决定的。 吸收恒等式$$\left(\begin{matrix}n\k\end{ma">
+<meta property="og:description" content="栈与队列概念数据在存入和取出时有一定顺序，先入后出位栈，先入先出为队列 栈定义方式栈根据采用的存储方式分为链式栈和顺序栈。简单定义如下 12345678910111213141516171819202122232425262728293031class Node&amp;#123;    int data;    Node* link&#x3D;NULL;&amp;#125;class Stack&amp;#123;    int">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://icecsheep.github.io/img/QQ%E5%9B%BE%E7%89%8720230207115106.jpg">
-<meta property="article:published_time" content="2023-02-07T03:08:37.000Z">
-<meta property="article:modified_time" content="2023-02-07T05:05:39.824Z">
+<meta property="article:published_time" content="2023-02-07T07:22:01.000Z">
+<meta property="article:modified_time" content="2023-02-07T08:20:34.162Z">
 <meta property="article:author" content="ice.Sheep">
-<meta property="article:tag" content="---组合数学">
+<meta property="article:tag" content="---数据结构">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://icecsheep.github.io/img/QQ%E5%9B%BE%E7%89%8720230207115106.jpg">
   
   
   
-  <title>二项式系数 - ice.Sheep&#39;blogs</title>
+  <title>栈与队列 - ice.Sheep&#39;blogs</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +197,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="二项式系数"></span>
+            <span id="subtitle" data-typed-text="栈与队列"></span>
           
         </div>
 
@@ -210,8 +208,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-02-07 11:08" pubdate>
-          February 7, 2023 am
+        <time datetime="2023-02-07 15:22" pubdate>
+          February 7, 2023 pm
         </time>
       </span>
     
@@ -271,31 +269,27 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">二项式系数</h1>
+            <h1 style="display: none">栈与队列</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="二项式系数"><a href="#二项式系数" class="headerlink" title="二项式系数"></a>二项式系数</h1><h2 id="帕斯卡三角形"><a href="#帕斯卡三角形" class="headerlink" title="帕斯卡三角形"></a>帕斯卡三角形</h2><p><img src="/../img/QQ%E5%9B%BE%E7%89%8720230207115106.jpg" srcset="/img/loading.gif" lazyload alt="帕斯卡三角形"></p>
-<h2 id="基本恒等式"><a href="#基本恒等式" class="headerlink" title="基本恒等式"></a>基本恒等式</h2><h3 id="对称恒等式"><a href="#对称恒等式" class="headerlink" title="对称恒等式"></a>对称恒等式</h3><p>$$<br>\left(\begin{matrix}<br>n\<br>k\<br>\end{matrix}\right)&#x3D;<br>\left(\begin{matrix}<br>n\<br>n-k\<br>\end{matrix}\right)<br>$$</p>
-<p>这个恒等式要求n大于等于0,因为n小于0的时候组合数等于0，这是由伽马函数决定的。</p>
-<h3 id="吸收恒等式"><a href="#吸收恒等式" class="headerlink" title="吸收恒等式"></a>吸收恒等式</h3><p>$$<br>\left(\begin{matrix}<br>n\<br>k<br>\end{matrix}\right)&#x3D;\frac{n}{k}<br>\left(\begin{matrix}<br>n-1\<br>k-1<br>\end{matrix}\right)<br>$$</p>
-<p>该不等式在帕斯卡三角形中表示了同一对角线上元素的关系</p>
-<h3 id="帕斯卡恒等式"><a href="#帕斯卡恒等式" class="headerlink" title="帕斯卡恒等式"></a>帕斯卡恒等式</h3><p>$$<br>\left(\begin{matrix}<br>n\<br>k<br>\end{matrix}\right)&#x3D;<br>\left(\begin{matrix}<br>n-1\<br>k<br>\end{matrix}\right)+<br>\left(\begin{matrix}<br>n-1\<br>k-1<br>\end{matrix}\right)<br>$$</p>
-<p>组合意义就是在n个里面取k个可以看成是先取一个，如果它是我们要取得，就在n-1里取k-1个。如果不是就取k个</p>
-<p>在帕斯卡三角形中表示的是一个元素在它上方的两个数字之和等于这个数</p>
-<h4 id="推广"><a href="#推广" class="headerlink" title="推广"></a>推广</h4><ul>
-<li><p>列求和<br>  $$<br>  \sum_{k\le n}\left(\begin{matrix}<br>  k\<br>  m<br>  \end{matrix}\right)&#x3D;<br>  \left(\begin{matrix}<br>  n+1\<br>  m+1<br>  \end{matrix}\right)<br>  $$<br>  这个等式是从等式右边的数据开始，每次都把自己上方的数字用帕斯卡等式展开。、</p>
-<p>  作用就是用来列求和，或者说是上指标求和</p>
-</li>
-<li><p>对角线求和<br>  $$<br>  \sum_{k\le n}\left(\begin{matrix}<br>  k\<br>  m<br>  \end{matrix}\right)&#x3D;<br>  \left(\begin{matrix}<br>  n+1\<br>  m+1<br>  \end{matrix}\right)<br>  $$</p>
-</li>
-<li><p>差分</p>
-<p>  将k看成是自变量的化，刚好满足差分的形式</p>
-</li>
+                <h1 id="栈与队列"><a href="#栈与队列" class="headerlink" title="栈与队列"></a>栈与队列</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>数据在存入和取出时有一定顺序，先入后出位栈，先入先出为队列</p>
+<h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><h3 id="定义方式"><a href="#定义方式" class="headerlink" title="定义方式"></a>定义方式</h3><p>栈根据采用的存储方式分为链式栈和顺序栈。简单定义如下</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Node</span><br>&#123;<br>    <span class="hljs-type">int</span> data;<br>    Node* link=<span class="hljs-literal">NULL</span>;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Stack</span><br>&#123;<br>    <span class="hljs-type">int</span> size=<span class="hljs-number">0</span>;<br>    Node *top=<span class="hljs-literal">NULL</span>;<br>    <br><span class="hljs-keyword">public</span>:<br>     <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">push</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span><br><span class="hljs-function">    </span>&#123;<br>       Node*p=<span class="hljs-keyword">new</span> Node;<br>        p-&gt;data=x;<br>        p-&gt;link=top;<br>        top=p;<br>        size++;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">pop</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span><br><span class="hljs-function">    </span>&#123;<br>        Node*p=top;<br>        x=p-&gt;data;<br>        top=top-&gt;link;<br>        <span class="hljs-keyword">delete</span> p;<br>        size--;<br>        <span class="hljs-keyword">return</span> x;<br>    &#125;<br>        <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这里就是简单用链表实现两个核心操作，并不完善。</p>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><ul>
+<li>数制转换：10进制数变为其他进制数的方式就是求模，然后在进行倒过来对余数进行输出，那么每次的余数就可以存在栈里，倒过来输出</li>
+<li>迷宫，用栈存入已经走过的路径，如果走到不能动的地方，退出这个位置，从栈顶的位置在走</li>
+<li>括号匹配，遇到左括号存进去，然后碰到右括号弹出，这样就保证括号是匹配的</li>
 </ul>
-<h3 id="二项式系数乘积"><a href="#二项式系数乘积" class="headerlink" title="二项式系数乘积"></a>二项式系数乘积</h3><p>$$<br>\left(\begin{matrix}<br>n\<br>m<br>\end{matrix}\right)<br>\left(\begin{matrix}<br>m\<br>k<br>\end{matrix}\right)<br>&#x3D;\left(\begin{matrix}<br>n\<br>k<br>\end{matrix}\right)<br>\left(\begin{matrix}<br>n-k\<br>m-k<br>\end{matrix}\right)<br>$$</p>
-<p>​		这个等式是表述了一个两次分类的问题，第一次就是在n个里面选m个为标记，然后再m个里面挑选k个作为第二类标记。这个方法等价于现在n个里挑选k个作为第二类标记，然后在n-k里挑选m-k个作为第一类标记</p>
+<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><h3 id="定义方式-1"><a href="#定义方式-1" class="headerlink" title="定义方式"></a>定义方式</h3><p>按存储方式数组和链表分为顺序队列和链式队列</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Node</span><br>&#123;<br>    <span class="hljs-type">int</span> data;<br>    Node* link=<span class="hljs-literal">NULL</span>;<br>&#125;<br><br><span class="hljs-keyword">class</span> <br>&#123;<br>    <span class="hljs-type">int</span> size=<span class="hljs-number">0</span>;<br>    Node *rear=<span class="hljs-literal">NULL</span>;<br>    Node *front=<span class="hljs-literal">NULL</span>;<br>    <br><span class="hljs-keyword">public</span>:<br>     <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">push</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span><br><span class="hljs-function">    </span>&#123;<br>       Node*p=<span class="hljs-keyword">new</span> Node;<br>        p-&gt;data=x;<br>        rear-&gt;link=p;<br>        rear=p;<br>        size++;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">pop</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span><br><span class="hljs-function">    </span>&#123;<br>        Node*p=front;<br>        x=p-&gt;data;<br>        front=front-&gt;link;<br>        <span class="hljs-keyword">delete</span> p;<br>        size--;<br>        <span class="hljs-keyword">return</span> x;<br>    &#125;<br>        <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这里需要设置一个队头和队尾的指针</p>
+<p>这里是链式队列，顺序队列可能会出现溢出，所以在每次存入时就会对存入的的位置进行求模，这样就避免冲突，这样在逻辑上就形成了环形队列</p>
+<h3 id="应用-1"><a href="#应用-1" class="headerlink" title="应用"></a>应用</h3><p>打印帕斯卡三角形。因为是把一堆数用完然后再按照顺序进行相加，方法非常类似队列。因此可以把第一行的数值入队，每次弹出一个值，再与队列顶部的元素相加再入队，为了方便，我们可以加一行0进行计算，这样就避免队列为0的情况</p>
 
                 
               </div>
@@ -314,7 +308,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Concrete-Mathematics/" class="category-chain-item">---Concrete Mathematics</a>
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="category-chain-item">---数据结构</a>
   
   
 
@@ -329,7 +323,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/">#---组合数学</a>
+        <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">#---数据结构</a>
       
     </div>
   
@@ -341,8 +335,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>二项式系数</div>
-      <div>http://icecsheep.github.io/2023/02/07/二项式系数/</div>
+      <div>栈与队列</div>
+      <div>http://icecsheep.github.io/2023/02/07/栈与队列/</div>
     </div>
     <div class="license-meta">
       
@@ -386,9 +380,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/02/07/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/" title="栈与队列">
+                      <a href="/2023/02/07/%E5%AD%97%E7%AC%A6%E4%B8%B2/" title="字符串">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">栈与队列</span>
+                        <span class="hidden-mobile">字符串</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -396,8 +390,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/02/06/%E7%89%B9%E6%AE%8A%E6%95%B0/" title="特殊数">
-                        <span class="hidden-mobile">特殊数</span>
+                      <a href="/2023/02/07/%E4%BA%8C%E9%A1%B9%E5%BC%8F%E7%B3%BB%E6%95%B0/" title="二项式系数">
+                        <span class="hidden-mobile">二项式系数</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
