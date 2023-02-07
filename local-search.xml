@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>二项式系数</title>
+    <link href="/2023/02/07/%E4%BA%8C%E9%A1%B9%E5%BC%8F%E7%B3%BB%E6%95%B0/"/>
+    <url>/2023/02/07/%E4%BA%8C%E9%A1%B9%E5%BC%8F%E7%B3%BB%E6%95%B0/</url>
+    
+    <content type="html"><![CDATA[<h1 id="二项式系数"><a href="#二项式系数" class="headerlink" title="二项式系数"></a>二项式系数</h1><h2 id="帕斯卡三角形"><a href="#帕斯卡三角形" class="headerlink" title="帕斯卡三角形"></a>帕斯卡三角形</h2><p><img src="/../img/QQ%E5%9B%BE%E7%89%8720230207115106.jpg" alt="帕斯卡三角形"></p><h2 id="基本恒等式"><a href="#基本恒等式" class="headerlink" title="基本恒等式"></a>基本恒等式</h2><h3 id="对称恒等式"><a href="#对称恒等式" class="headerlink" title="对称恒等式"></a>对称恒等式</h3><p>$$<br>\left(\begin{matrix}<br>n\<br>k<br>\end{matrix}\right)&#x3D;<br>\left(\begin{matrix}<br>n\<br>n-k<br>\end{matrix}\right)<br>$$</p><p>这个恒等式要求n大于等于0,因为n小于0的时候组合数等于0，这是由伽马函数决定的。</p><h3 id="吸收恒等式"><a href="#吸收恒等式" class="headerlink" title="吸收恒等式"></a>吸收恒等式</h3><p>$$<br>\left(\begin{matrix}<br>n\<br>k<br>\end{matrix}\right)&#x3D;\frac{n}{k}<br>\left(\begin{matrix}<br>n-1\<br>k-1<br>\end{matrix}\right)<br>$$</p><p>该不等式在帕斯卡三角形中表示了同一对角线上元素的关系</p><h3 id="帕斯卡恒等式"><a href="#帕斯卡恒等式" class="headerlink" title="帕斯卡恒等式"></a>帕斯卡恒等式</h3><p>$$<br>\left(\begin{matrix}<br>n\<br>k<br>\end{matrix}\right)&#x3D;<br>\left(\begin{matrix}<br>n-1\<br>k<br>\end{matrix}\right)+<br>\left(\begin{matrix}<br>n-1\<br>k-1<br>\end{matrix}\right)<br>$$</p><p>组合意义就是在n个里面取k个可以看成是先取一个，如果它是我们要取得，就在n-1里取k-1个。如果不是就取k个</p><p>在帕斯卡三角形中表示的是一个元素在它上方的两个数字之和等于这个数</p><h4 id="推广"><a href="#推广" class="headerlink" title="推广"></a>推广</h4><ul><li><p>列求和<br>  $$<br>  \sum_{k\le n}\left(\begin{matrix}<br>  k\<br>  m<br>  \end{matrix}\right)&#x3D;<br>  \left(\begin{matrix}<br>  n+1\<br>  m+1<br>  \end{matrix}\right)<br>  $$<br>  这个等式是从等式右边的数据开始，每次都把自己上方的数字用帕斯卡等式展开。、</p><p>  作用就是用来列求和，或者说是上指标求和</p></li><li><p>对角线求和<br>  $$<br>  \sum_{k\le n}\left(\begin{matrix}<br>  k\<br>  m<br>  \end{matrix}\right)&#x3D;<br>  \left(\begin{matrix}<br>  n+1\<br>  m+1<br>  \end{matrix}\right)<br>  $$</p></li><li><p>差分</p></li></ul><p>​</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>---Concrete Mathematics</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>---组合数学</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>特殊数</title>
     <link href="/2023/02/06/%E7%89%B9%E6%AE%8A%E6%95%B0/"/>
     <url>/2023/02/06/%E7%89%B9%E6%AE%8A%E6%95%B0/</url>
