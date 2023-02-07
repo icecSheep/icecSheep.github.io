@@ -16,22 +16,24 @@
   <meta name="author" content="ice.Sheep">
   <meta name="keywords" content="">
   
-    <meta name="description" content="栈与队列概念数据在存入和取出时有一定顺序，先入后出为栈，先入先出为队列 栈定义方式栈根据采用的存储方式分为链式栈和顺序栈。简单定义如下 12345678910111213141516171819202122232425262728293031class Node&amp;#123;    int data;    Node* link&#x3D;NULL;&amp;#125;class Stack&amp;#123;    int">
+    <meta name="description" content="树概念  逻辑上是这个结构的就称为树">
 <meta property="og:type" content="article">
-<meta property="og:title" content="栈与队列">
-<meta property="og:url" content="http://icecsheep.github.io/2023/02/07/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/index.html">
+<meta property="og:title" content="树">
+<meta property="og:url" content="http://icecsheep.github.io/2023/02/07/%E6%A0%91/index.html">
 <meta property="og:site_name" content="ice.Sheep&#39;blogs">
-<meta property="og:description" content="栈与队列概念数据在存入和取出时有一定顺序，先入后出为栈，先入先出为队列 栈定义方式栈根据采用的存储方式分为链式栈和顺序栈。简单定义如下 12345678910111213141516171819202122232425262728293031class Node&amp;#123;    int data;    Node* link&#x3D;NULL;&amp;#125;class Stack&amp;#123;    int">
+<meta property="og:description" content="树概念  逻辑上是这个结构的就称为树">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-02-07T07:22:01.000Z">
-<meta property="article:modified_time" content="2023-02-07T11:09:17.977Z">
+<meta property="og:image" content="http://icecsheep.github.io/2023/02/07/img/QQ%E5%9B%BE%E7%89%8720230207203748.png">
+<meta property="article:published_time" content="2023-02-07T12:34:35.000Z">
+<meta property="article:modified_time" content="2023-02-07T12:40:52.654Z">
 <meta property="article:author" content="ice.Sheep">
 <meta property="article:tag" content="---数据结构">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://icecsheep.github.io/2023/02/07/img/QQ%E5%9B%BE%E7%89%8720230207203748.png">
   
   
   
-  <title>栈与队列 - ice.Sheep&#39;blogs</title>
+  <title>树 - ice.Sheep&#39;blogs</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="栈与队列"></span>
+            <span id="subtitle" data-typed-text="树"></span>
           
         </div>
 
@@ -208,7 +210,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-02-07 15:22" pubdate>
+        <time datetime="2023-02-07 20:34" pubdate>
           February 7, 2023 pm
         </time>
       </span>
@@ -220,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k words
+          16 words
         
       </span>
     
@@ -231,7 +233,7 @@
         
         
         
-          10 mins
+          1 mins
         
       </span>
     
@@ -269,27 +271,14 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">栈与队列</h1>
+            <h1 style="display: none">树</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="栈与队列"><a href="#栈与队列" class="headerlink" title="栈与队列"></a>栈与队列</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>数据在存入和取出时有一定顺序，先入后出为栈，先入先出为队列</p>
-<h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><h3 id="定义方式"><a href="#定义方式" class="headerlink" title="定义方式"></a>定义方式</h3><p>栈根据采用的存储方式分为链式栈和顺序栈。简单定义如下</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Node</span><br>&#123;<br>    <span class="hljs-type">int</span> data;<br>    Node* link=<span class="hljs-literal">NULL</span>;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Stack</span><br>&#123;<br>    <span class="hljs-type">int</span> size=<span class="hljs-number">0</span>;<br>    Node *top=<span class="hljs-literal">NULL</span>;<br>    <br><span class="hljs-keyword">public</span>:<br>     <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">push</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span><br><span class="hljs-function">    </span>&#123;<br>       Node*p=<span class="hljs-keyword">new</span> Node;<br>        p-&gt;data=x;<br>        p-&gt;link=top;<br>        top=p;<br>        size++;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">pop</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span><br><span class="hljs-function">    </span>&#123;<br>        Node*p=top;<br>        x=p-&gt;data;<br>        top=top-&gt;link;<br>        <span class="hljs-keyword">delete</span> p;<br>        size--;<br>        <span class="hljs-keyword">return</span> x;<br>    &#125;<br>        <br>&#125;<br></code></pre></td></tr></table></figure>
+                <h1 id="树"><a href="#树" class="headerlink" title="树"></a>树</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><img src="../img/QQ图片20230207203748.png" srcset="/img/loading.gif" lazyload alt="树的示意图" style="zoom:67%;" />
 
-<p>这里就是简单用链表实现两个核心操作，并不完善。</p>
-<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><ul>
-<li>数制转换：10进制数变为其他进制数的方式就是求模，然后在进行倒过来对余数进行输出，那么每次的余数就可以存在栈里，倒过来输出</li>
-<li>迷宫，用栈存入已经走过的路径，如果走到不能动的地方，退出这个位置，从栈顶的位置在走</li>
-<li>括号匹配，遇到左括号存进去，然后碰到右括号弹出，这样就保证括号是匹配的</li>
-</ul>
-<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><h3 id="定义方式-1"><a href="#定义方式-1" class="headerlink" title="定义方式"></a>定义方式</h3><p>按存储方式数组和链表分为顺序队列和链式队列</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Node</span><br>&#123;<br>    <span class="hljs-type">int</span> data;<br>    Node* link=<span class="hljs-literal">NULL</span>;<br>&#125;<br><br><span class="hljs-keyword">class</span> <br>&#123;<br>    <span class="hljs-type">int</span> size=<span class="hljs-number">0</span>;<br>    Node *rear=<span class="hljs-literal">NULL</span>;<br>    Node *front=<span class="hljs-literal">NULL</span>;<br>    <br><span class="hljs-keyword">public</span>:<br>     <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">push</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span><br><span class="hljs-function">    </span>&#123;<br>       Node*p=<span class="hljs-keyword">new</span> Node;<br>        p-&gt;data=x;<br>        rear-&gt;link=p;<br>        rear=p;<br>        size++;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">pop</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span><br><span class="hljs-function">    </span>&#123;<br>        Node*p=front;<br>        x=p-&gt;data;<br>        front=front-&gt;link;<br>        <span class="hljs-keyword">delete</span> p;<br>        size--;<br>        <span class="hljs-keyword">return</span> x;<br>    &#125;<br>        <br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>这里需要设置一个队头和队尾的指针</p>
-<p>这里是链式队列，顺序队列可能会出现溢出，所以在每次存入时就会对存入的的位置进行求模，这样就避免冲突，这样在逻辑上就形成了环形队列</p>
-<h3 id="应用-1"><a href="#应用-1" class="headerlink" title="应用"></a>应用</h3><p>打印帕斯卡三角形。因为是把一堆数用完然后再按照顺序进行相加，方法非常类似队列。因此可以把第一行的数值入队，每次弹出一个值，再与队列顶部的元素相加再入队，为了方便，我们可以加一行0进行计算，这样就避免队列为0的情况</p>
+<p>逻辑上是这个结构的就称为树</p>
 
                 
               </div>
@@ -335,8 +324,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>栈与队列</div>
-      <div>http://icecsheep.github.io/2023/02/07/栈与队列/</div>
+      <div>树</div>
+      <div>http://icecsheep.github.io/2023/02/07/树/</div>
     </div>
     <div class="license-meta">
       
@@ -380,18 +369,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/02/07/%E5%AD%97%E7%AC%A6%E4%B8%B2/" title="字符串">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">字符串</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/02/07/%E4%BA%8C%E9%A1%B9%E5%BC%8F%E7%B3%BB%E6%95%B0/" title="二项式系数">
-                        <span class="hidden-mobile">二项式系数</span>
+                      <a href="/2023/02/07/%E5%AD%97%E7%AC%A6%E4%B8%B2/" title="字符串">
+                        <span class="hidden-mobile">字符串</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
