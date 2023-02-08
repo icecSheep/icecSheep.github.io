@@ -1,0 +1,834 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/QQ%E5%9B%BE%E7%89%8720230208002851.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ice.Sheep">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="树概念 逻辑上是这个结构的就称为树 基本术语 度：一个结点的子树的数量，也就是离散数学里的出度 根节点：A 叶节点： K，L .M。即度为0的结点 分支结点，内部结点：除了叶结点的结点 深度：树的最大层数，规定根结点为0层，这个树的深度就是3 高度：深度加1 树的度：结点最大的度为m则称为是度为m的树，或m叉树 森林：多个不相交的树组成  基本性质 树的结点树是树度数和加1 度为m的树，第i层最多">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树">
+<meta property="og:url" content="http://icecsheep.github.io/2023/02/07/%E6%A0%91/index.html">
+<meta property="og:site_name" content="ice.Sheep&#39;blogs">
+<meta property="og:description" content="树概念 逻辑上是这个结构的就称为树 基本术语 度：一个结点的子树的数量，也就是离散数学里的出度 根节点：A 叶节点： K，L .M。即度为0的结点 分支结点，内部结点：除了叶结点的结点 深度：树的最大层数，规定根结点为0层，这个树的深度就是3 高度：深度加1 树的度：结点最大的度为m则称为是度为m的树，或m叉树 森林：多个不相交的树组成  基本性质 树的结点树是树度数和加1 度为m的树，第i层最多">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://icecsheep.github.io/img/QQ%E5%9B%BE%E7%89%8720230207203748.png">
+<meta property="og:image" content="http://icecsheep.github.io/img/QQ%E5%9B%BE%E7%89%8720230208180239.png">
+<meta property="og:image" content="http://icecsheep.github.io/img/QQ%E5%9B%BE%E7%89%8720230208181829.png">
+<meta property="article:published_time" content="2023-02-07T12:34:35.000Z">
+<meta property="article:modified_time" content="2023-02-08T15:02:50.857Z">
+<meta property="article:author" content="ice.Sheep">
+<meta property="article:tag" content="---数据结构">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://icecsheep.github.io/img/QQ%E5%9B%BE%E7%89%8720230207203748.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>树 - ice.Sheep&#39;blogs</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"icecsheep.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>ice.Sheep&#39;blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="树"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-02-07 20:34" pubdate>
+          February 7, 2023 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          34 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">树</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="树"><a href="#树" class="headerlink" title="树"></a>树</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p><img src="/../img/QQ%E5%9B%BE%E7%89%8720230207203748.png" srcset="/img/loading.gif" lazyload alt="树的示意图"></p>
+<p>逻辑上是这个结构的就称为树</p>
+<h3 id="基本术语"><a href="#基本术语" class="headerlink" title="基本术语"></a>基本术语</h3><ul>
+<li>度：一个结点的子树的数量，也就是离散数学里的出度</li>
+<li>根节点：A</li>
+<li>叶节点： K，L .M。即度为0的结点</li>
+<li>分支结点，内部结点：除了叶结点的结点</li>
+<li>深度：树的最大层数，规定根结点为0层，这个树的深度就是3</li>
+<li>高度：深度加1</li>
+<li>树的度：结点最大的度为m则称为是度为m的树，或m叉树</li>
+<li>森林：多个不相交的树组成</li>
+</ul>
+<h3 id="基本性质"><a href="#基本性质" class="headerlink" title="基本性质"></a>基本性质</h3><ul>
+<li>树的结点树是树度数和加1</li>
+<li>度为m的树，第i层最多有。$m^{i}$个结点</li>
+<li>高度为h的树结点最多有$\frac{m^h-1}{m-1}$个结点</li>
+<li>有n个结点的m叉树，高度最小为$[log_{m}(n(m-1)+1)]$</li>
+</ul>
+<h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2><p>就是度最大为2的树，但是注意，左右结点不可随意变换。</p>
+<p>比如，三个结点的二叉树最多有5种</p>
+<p><img src="/../img/QQ%E5%9B%BE%E7%89%8720230208180239.png" srcset="/img/loading.gif" lazyload alt="三个结点产生的二叉树"></p>
+<h3 id="二叉树的基本类型"><a href="#二叉树的基本类型" class="headerlink" title="二叉树的基本类型"></a>二叉树的基本类型</h3><ul>
+<li><p>满二叉树：每一层都是满的二叉树</p>
+</li>
+<li><p>完全二叉树：在满二叉树的基础上，最后一层可以不满，但是必须挨着都从左往右排。这里有个好处，如果我们用数组来表示树，很容易找到父节点于子女结点的关系</p>
+</li>
+<li><p>扩充二叉树：每个叶子结点都加两个空结点或者一个空结点，如图</p>
+<p>  扩充二叉树的基本性质以及术语</p>
+<ul>
+<li>外部路径长度E：从扩充的二叉树的根到每个外部结点的路径长度之和</li>
+<li>内部路径长度I：扩充的二叉树里从根到每个内部结点的路径长度之和 </li>
+<li>E&#x3D;2n+I 该结论用归纳法证明</li>
+</ul>
+</li>
+</ul>
+<p><img src="/../img/QQ%E5%9B%BE%E7%89%8720230208181829.png" srcset="/img/loading.gif" lazyload alt="扩充二叉树"></p>
+<h3 id="重要性质"><a href="#重要性质" class="headerlink" title="重要性质"></a>重要性质</h3><p>叶子结点的数量等于度为2的结点的数量加一</p>
+<p>证明：设树结点数为n</p>
+<p>​			n&#x3D;$n_{0}$+$n_{1}$+$n_{2}$</p>
+<p>​			n&#x3D;e+1           &#x2F;&#x2F;树的性质</p>
+<p>​			e&#x3D;$n_{1}$+2$n_{2}$    &#x2F;&#x2F;出度之和等于边的数量</p>
+<p>​		化简即证</p>
+<h3 id="二叉树的存储结构"><a href="#二叉树的存储结构" class="headerlink" title="二叉树的存储结构"></a>二叉树的存储结构</h3><p>依然是顺序存储和链式存储，也就是用数组和链表来实现，链表此处表述不准确</p>
+<h4 id="顺序存储"><a href="#顺序存储" class="headerlink" title="顺序存储"></a>顺序存储</h4><p>就是用一个数组进行存储就行，从第0层开始，从0或者1开始数，其中如果有左子树为空但右子树不为空的情况，就在它的左子树存一个“空”，其实就相当于扩充二叉树一样。</p>
+<h4 id="链式存储"><a href="#链式存储" class="headerlink" title="链式存储"></a>链式存储</h4><p>依然是定义一个结点类</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Node</span><br>&#123;<br>    <span class="hljs-type">int</span> data;<br>    Node* leftchild=<span class="hljs-literal">NULL</span>;<br>    Node* rightchild=<span class="hljs-literal">NULL</span>;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">tree</span><br>&#123;<br>    Node* root;<br>    <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这里并不完整，因为一个数树要实现插入，删除，遍历等操作，要写很多函数，这里写的是必须要有的。</p>
+<h3 id="二叉树的遍历"><a href="#二叉树的遍历" class="headerlink" title="二叉树的遍历"></a>二叉树的遍历</h3><h4 id="广度优先遍历"><a href="#广度优先遍历" class="headerlink" title="广度优先遍历"></a>广度优先遍历</h4><p>广度优先就是一层一层的遍历，这就很像遍历帕斯卡三角形一样,因此是要借助队列来实现</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;queue&gt;</span></span><br>queue&lt;Node*&gt;Q;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">lorder</span><span class="hljs-params">(Node*root)</span></span><br><span class="hljs-function"></span>&#123;<br>    Node*pointer;<br>	q.<span class="hljs-built_in">push</span>(root);<br>	<span class="hljs-keyword">while</span>(q.<span class="hljs-built_in">empty</span>())<br>    &#123;<br>        pointer=Q.<span class="hljs-built_in">front</span>();<br>        Q.<span class="hljs-built_in">pop</span>();<br>        <span class="hljs-keyword">if</span>(pointer-&gt;leftchild)<br>            Q,<span class="hljs-built_in">push</span>(pointer-&gt;leftchild);<br>         <span class="hljs-keyword">if</span>(pointer-&gt;rightchild)<br>            Q,<span class="hljs-built_in">push</span>(pointer-&gt;rightchild);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>除了广度优先，就是深度优先遍历</p>
+<h4 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h4><p>深度优先遍历的顺序主要针对根节点来说的，前序遍历就是根节点在其左孩子和右孩子之前进行输出</p>
+<h5 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">preorder</span><span class="hljs-params">(Node  *root)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">if</span>(root)<br>    &#123;<br>        <span class="hljs-built_in">visit</span>(root);<br>        <span class="hljs-built_in">preorder</span>(root-&gt;leftchild);<br>        <span class="hljs-built_in">pre0rder</span>(root-&gt;rightchild);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>visit是访问的函数</p>
+<h5 id="非递归实现"><a href="#非递归实现" class="headerlink" title="非递归实现"></a>非递归实现</h5><p>前序遍历，轮到哪个结点直接先把这个结点输出，然后转到它的左子树继续进行遍历，问题就在于如何返回它的右子树。发现左子树的遍历完成之后，才会进行右子树遍历，后进先出，明显是栈的数据结构。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stack&gt;</span><span class="hljs-comment">//调用stl里的stack</span></span><br>stack&lt;Node*&gt; Stack;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">preorder</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    Node*pointer =root;<br>    <span class="hljs-keyword">while</span>(pointer||!Stack.<span class="hljs-built_in">empty</span>())<br>    &#123;<br>        <span class="hljs-keyword">if</span>(pointer)<br>        &#123;<br>            <span class="hljs-built_in">visit</span>(pointer)；<br>            <span class="hljs-keyword">if</span>(pointer-&gt;rightchild) <span class="hljs-comment">//这句话加与不加区别不大，因为尽管把空指针入栈，之后弹出来，pointer也会指向空指针之后的元素，不过加这句话会少跑几步程序</span><br>            Stack.<span class="hljs-built_in">push</span>(pointer-&gt;rightchild);<br>            pointer=pointer-&gt;leftchild;<br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            pointer=Stack,<span class="hljs-built_in">top</span>();<br>            Stack.<span class="hljs-built_in">pop</span>();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h4><h5 id="递归实现-1"><a href="#递归实现-1" class="headerlink" title="递归实现"></a>递归实现</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">inorder</span><span class="hljs-params">(Node  *root)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">if</span>(root)<br>    &#123;<br>        <span class="hljs-built_in">inorder</span>(root-&gt;leftchild);<br>        <span class="hljs-built_in">visit</span>(root);<br>        <span class="hljs-built_in">inorder</span>(root-&gt;rightchild);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>中序遍历就是左中右。</p>
+<p>递归非常简单，就是换个位置</p>
+<h5 id="非递归实现-1"><a href="#非递归实现-1" class="headerlink" title="非递归实现"></a>非递归实现</h5><p>明显这个也需要一个栈做为一个辅助的数据结构</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stack&gt;</span><span class="hljs-comment">//调用stl里的stack</span></span><br>stack&lt;Node*&gt; Stack;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">inorder</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    Node*pointer =root;<br>    Stack.<span class="hljs-built_in">push</span>(root);<br>    <span class="hljs-keyword">while</span>(pointer||!Stack.<span class="hljs-built_in">empty</span>())<br>    &#123;<br>        <span class="hljs-keyword">if</span>(pointer)<br>        &#123;<br>            <span class="hljs-keyword">if</span>(pointer-&gt;leftchild)<br>            &#123;<br>                pointer=pointer-&gt;leftchild;<br>                Stack.<span class="hljs-built_in">push</span>(pointer);<br>              <br>            &#125;<br>           <br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            pointer=Stack,<span class="hljs-built_in">top</span>();<br>            Stack.<span class="hljs-built_in">pop</span>();<br>            <span class="hljs-built_in">visit</span>(pointer);<br>            pointer=pointer-&gt;rightchild;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>对比两个算法的小差别，上一个是直接把rightchild入栈，然后返回来访问，也就是我们是直接进入右子树的，那么我们是不是也可以只存入“根·”结点，通过pointer-&gt;rightchild来进入右子树。这个想法对于中序遍历来说，更方便的访问了根结点，减少了入栈出栈次数，同时如果我们把根和右子树同时入栈，反而会很麻烦，弹出一个结点来，你怎么确定是根还是右子树的开始遍历的结点呢。所以这里只用入栈根结点，在开始就一路向左下。</p>
+<h4 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h4><p>就是根结点在后面的遍历方式</p>
+<p>递归就是在改一下顺序就行</p>
+<h5 id="非递归实现-2"><a href="#非递归实现-2" class="headerlink" title="非递归实现"></a>非递归实现</h5><p>后序是先遍历左子树再遍历右子树。</p>
+<p>仍然只入栈根结点，但是当出栈以后我们是不是要访问这个结点呢。这取决于这个结点右孩子是不是被访问，如果访问，按照后续遍历的顺序，那就该访问这个结点，如果没访问就应该进入右子树进行访问。</p>
+<p>最直观的想法就是设立一个标志位。</p>
+<p>这个标志位可以直接设置在树的结点里面，直接表示这个结点是右孩子还是左孩子</p>
+<p>或者设置在栈的数据类型里面</p>
+<p>或者让一个指针一直显示被访问的元素，当弹栈的时候让这个指针和结点的右孩子比</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stack&gt;</span><span class="hljs-comment">//调用stl里的stack</span></span><br>stack&lt;Node*&gt; Stack;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">inorder</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    Node*pointer =root;<br>    Node*t;<br>    Stack.<span class="hljs-built_in">push</span>(root);<br>    <span class="hljs-keyword">while</span>(!Stack.<span class="hljs-built_in">empty</span>())<br>    &#123;<br>        <span class="hljs-keyword">if</span>(pointer)<br>        &#123;<br>            <span class="hljs-keyword">if</span>(pointer-&gt;leftchild)<br>            &#123;<br>                pointer=pointer-&gt;leftchild;<br>                Stack.<span class="hljs-built_in">push</span>(pointer);<br>              <br>            &#125;<br>           <br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            pointer=Stack,<span class="hljs-built_in">top</span>();<br>            Stack.<span class="hljs-built_in">pop</span>();<br>            <span class="hljs-keyword">if</span>(!pointer-&gt;rightchild||pointer==t)<br>            &#123;<br>                <span class="hljs-built_in">visit</span>(pointer);<br>                t=pointer;<br>            &#125;<br>            <span class="hljs-keyword">else</span><br>            &#123;<br>                Stack.<span class="hljs-built_in">push</span>(pointer);<br>            	pointer=pointer-&gt;rightchild;<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>要注意到这里循环条件的变化</p>
+<h4 id="遍历总结"><a href="#遍历总结" class="headerlink" title="遍历总结"></a>遍历总结</h4><p>明显这些算法的时间复杂度是O(n)，空间复杂度也是O(n)</p>
+<p>同时，如果我们用先序遍历和中序遍历，或者中序遍历和后序遍历是可以确定一颗二叉树的。</p>
+<p>但是，先序和后序是不可以确定的。</p>
+<h4 id="线索二叉树"><a href="#线索二叉树" class="headerlink" title="线索二叉树"></a>线索二叉树</h4><p>在进行遍历的时候我们发现在叶子结点的空指针并没有足够好的利用，因此，就会出现线索二叉树</p>
+<p>它的数据结构就是下面这样</p>
+<table>
+<thead>
+<tr>
+<th>data</th>
+<th>leftchild</th>
+<th>leftflag</th>
+<th>rightchild</th>
+<th>rightflag</th>
+</tr>
+</thead>
+</table>
+<p>当标志位为0时，child还是指向左右孩子，当flag为1时，leftchild指向前驱，rightchild指向后驱</p>
+<p>当没有前驱或后驱的时候，对应的指针置为空指针就行</p>
+<p>前驱和后驱是通过遍历确定的。</p>
+<p>因此根据遍历方式不同，线索二叉树分为前序穿线树，中序穿线树，后序穿线树。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="category-chain-item">---数据结构</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">#---数据结构</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>树</div>
+      <div>http://icecsheep.github.io/2023/02/07/树/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>ice.Sheep</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>February 7, 2023</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/02/07/%E5%AD%97%E7%AC%A6%E4%B8%B2/" title="字符串">
+                        <span class="hidden-mobile">字符串</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81ODAyMS8zNDQ4NA==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('mermaid' in window) {
+        mermaid.init();
+      }
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
