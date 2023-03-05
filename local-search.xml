@@ -4,6 +4,50 @@
   
   
   <entry>
+    <title>CNN神经网络</title>
+    <link href="/2023/03/05/CNN%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    <url>/2023/03/05/CNN%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
+    
+    <content type="html"><![CDATA[<h1 id="CNN神经网络"><a href="#CNN神经网络" class="headerlink" title="CNN神经网络"></a>CNN神经网络</h1><h2 id="导言"><a href="#导言" class="headerlink" title="导言"></a>导言</h2><p>CNN神经网络就是卷积神经网络。回想MLP(多层感知机)的做法，输入一个<code>100*100</code>的样本，那么就需要一个高度为100的权重矩阵，当样本的维度不断增大，所需要的<code>w</code> 的高度也就越大，当输入样本的维度非常大时，计算的负荷也非常大。卷积就是解决这样问题的有效手段。</p><h2 id="思想来源以及公式推导"><a href="#思想来源以及公式推导" class="headerlink" title="思想来源以及公式推导"></a>思想来源以及公式推导</h2><p>在观察或识别一个图片的时候，我们能否识别成功，与它的位置无关，仅仅与它临近的位置的特点有关。一个图片我们观察它的中心和它的特征，无论它放在上面还是下面都不影响是否识别成功。</p><p>现在对原来的权重公式进行变形</p><p>$$h_{i,j}&#x3D;\sum_{k,l}w_{i,j,k,l} * x_{i,j,k,l}&#x3D;\sum_{k,l}w_{i,j,i+a,j+b}* x_{i,j,i+a,j+b}&#x3D;\sum_{a,b}v_{i,j,a,j+b}* x_{i,j,i+a,j+b}&#x3D;\sum_{a,b}v_{a,b}* x_{i,j,i+a,j+b}$$</p><p>h表示输出值，w表示权重矩阵，x表示输入值，v是将w变换后形成的一个超参数，核矩阵。</p><p>上述公式的取值的结果只与点（i，j) 周围的特征有关。</p><p>我们也可以限制a,b的值，这样对特征的选取会更严格一些。</p><p>卷积的本质就是将一个点受它周围点的影响进行一个加和</p><p>比如一个蝴蝶在时刻x 煽动翅膀对事件有影响f(x)，煽动翅膀之后它的影响会随时间衰减g(m)，m表示xf发生后经过的时间，那么最后对事件的影响就是$\int_{0}^{t}f(x)g(t-x)dx$, 和上面的公式只是形式差别</p><h2 id="卷积的作用"><a href="#卷积的作用" class="headerlink" title="卷积的作用"></a>卷积的作用</h2><p>把一个图像通过一个核矩阵进行卷积，会得到更平滑，或者更尖锐的图像，然后进行处理。</p><p><img src="/../img/CNN/S%60PFYOUQPM1J~3XFCZ_WPW7.png" alt="图片处理与和核矩阵的关系"></p><h2 id="简单实现-pytorch"><a href="#简单实现-pytorch" class="headerlink" title="简单实现(pytorch)"></a>简单实现(pytorch)</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">from</span> torch <span class="hljs-keyword">import</span> nn<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">corr2d</span>(<span class="hljs-params">X,K</span>):<br>    h,w=K.shape<br>    Y=torch.zeros((X.shape[<span class="hljs-number">0</span>]-h+<span class="hljs-number">1</span>,X.shape[<span class="hljs-number">1</span>]-w+<span class="hljs-number">1</span>))<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> (Y.shape[<span class="hljs-number">0</span>]):<br>        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> (Y.shape[<span class="hljs-number">1</span>]):<br>            Y[i,j]=(X[i:i+h,j:j+w]*K).<span class="hljs-built_in">sum</span>()<br>    <span class="hljs-keyword">return</span> Y<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>---机器学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>---机器学习 ---神经网络</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>前缀和与差分</title>
+    <link href="/2023/03/04/%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/"/>
+    <url>/2023/03/04/%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/</url>
+    
+    <content type="html"><![CDATA[<h1 id="前缀和"><a href="#前缀和" class="headerlink" title="前缀和"></a>前缀和</h1><p>一种加速输入输出流的方式：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs C++">ios::<span class="hljs-built_in">sync_with_stdio</span>(flase);<br></code></pre></td></tr></table></figure><p>这个语句执行后输入输出就不同步，输入就会变快，但不能再使用 <code>scanf()</code></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>---算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>二项式系数</title>
     <link href="/2023/02/09/%E4%BA%8C%E9%A1%B9%E5%BC%8F%E7%B3%BB%E6%95%B0/"/>
     <url>/2023/02/09/%E4%BA%8C%E9%A1%B9%E5%BC%8F%E7%B3%BB%E6%95%B0/</url>
